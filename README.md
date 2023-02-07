@@ -3,9 +3,9 @@
 >_This repository is being continually updated as the project progresses._
 
 <br>
+
 **This project is aimed at building an analytical CRM web-application utilising insights gained from Machine Learning.**
 <br></br>
-
 ## Use Cases and Objectives
 
 There are two use-cases which will be analysed based on customer behaviour: **churn** and **cross-sell / up-sell**.
