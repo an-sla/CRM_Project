@@ -26,11 +26,13 @@ This project currently contains the data and Jupyter Notebook for the churn use 
 Currently, an extensive EDA section has been completed, and ML-model application is in progress: metrics and models have been determined and the ML pipeline has been built.
 
 ![LastUpdate](https://img.shields.io/badge/Latest%20Update-07.02.23-green)
-<br></br>
 
 ### Getting Started
 
-The `.ipynb` file with the preliminary analysis (EDA) and ML pipeline is stored in the `/EnrichedTelco` directory. The data is composed of 5 tables in the `.xlsx` format, which are stored in the `/EnrichedTelco/data_archive` sub-directory. Table and data descriptions are available in the Jupyter Notebook.
+The `.ipynb` file with the preliminary analysis (EDA) and ML pipeline is stored in the `/EnrichedTelco` directory.
+
+The data is composed of 5 tables in the `.xlsx` format, which are stored in the `/EnrichedTelco/data_archive` sub-directory. Table and data descriptions are available in the Jupyter Notebook.
+<br></br>
 
 ## License
 
