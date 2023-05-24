@@ -1,0 +1,125 @@
+
+body {
+  background-color: #0c0e0d;
+  font-family: Monaco, sans-serif;
+  color: #D2FADF;
+  font-size: 16px;
+}
+
+form {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-text: center;
+  height: 100vh;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type="text"], input[type="password"] {
+  width: 250px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 20px;
+  background-color: #3a3d3e;
+  color: #D2FADF;
+}
+
+button[type="submit"] {
+  color: #D2FADF;
+  background-color: Transparent;
+  border-radius: 10px;
+  border: none;
+  padding: 10px 20px;
+  transition: background-color 0.5s ease;
+  display: block;
+  text-align: center;
+  width: 100px;
+  font-family: Tahoma, sans-serif;
+  font-size: 16px;
+}
+
+button[type="submit"]:hover {
+  color: #3c6d58;
+  background-color: #92c8b0;
+  transition: background-color 0.5s ease;
+  text-decoration: none;
+}
+
+
+input[type="text"]:-webkit-autofill,
+input[type="text"]:-webkit-autofill:focus,
+input[type="text"]:-webkit-autofill:hover,
+input[type="text"]:-webkit-autofill:active,
+input[type="password"]:-webkit-autofill,
+input[type="password"]:-webkit-autofill:focus,
+input[type="password"]:-webkit-autofill:hover,
+input[type="password"]:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #92c8b0 inset !important;
+  -webkit-text-fill-color: #3c6d58 !important;
+  width: 250px !important;
+}
+
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  background-color: #9de1c6;
+  color: black;
+  border: 1px solid #ccc;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.signup-button {
+  color: #BEFBFF;
+  border-radius: 10px;
+  border: none;
+  padding: 10px 20px;
+  transition: background-color 0.5s ease;
+  display: block;
+  margin-top: 30px;
+  text-decoration: none;
+  text-align: center;
+  width: 250px;
+  font-size: 12px;
+}
+
+.signup-button:hover {
+  color: #00C8F0;
+  transition: background-color 0.5s ease;
+  text-decoration: none;
+}
+
+
+
+
+

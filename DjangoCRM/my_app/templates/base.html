@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    /* add your custom styles here */
+    body {
+      background-color: #0c0e0d;
+      font-family: Monaco, sans-serif;
+      color: white;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      color: #c8dfd5;
+    }
+    table {
+      border-color: #c8dfd5;
+      border-width: 1px;
+      border-collapse: collapse;
+      border-style: dotted;
+    }
+  </style>
+</head>
+<body>
+  <div id="sidebar">
+    {% block sidebar %}
+      {% include 'sidebar_base.html' %}
+    {% endblock %}
+  </div>
+
+  <div id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+</html>
+
+

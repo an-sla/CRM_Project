@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'support.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <head>
+         <title>{% block title %}Support Request Form{% endblock %}</title>
+    </head>
+    <h1>Support Request Form</h1>
+    <form id="support-form">
+        {% csrf_token %}
+        {{ support_form.as_p }}
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+    <div class="alert-container">
+    </div>
+
+    <script>
+      $(document).ready(function() {
+        // Submit support request
+        $('#support-form').submit(function(e) {
+          e.preventDefault();
+
+          $.ajax({
+            type: 'POST',
+            url: '/submit-support-request/',
+            data: $(this).serialize(),
+            success: function(response) {
+              if (response.status == 'success') {
+                $('.alert-container').append('<div class="alert alert-success"><span class="alert-message">' + response.message + '</span><span class="closebtn">&times;</span></div>');
+              } else {
+                $('.alert-container').append('<div class="alert alert-danger"><span class="alert-message">' + response.message + '</span><span class="closebtn">&times;</span></div>');
+              }
+            },
+            error: function(xhr, status, error) {
+              $('.alert-container').append('<div class="alert alert-danger"><span class="alert-message">There was an error submitting your support request. Please try again.</span><span class="closebtn">&times;</span></div>');
+            }
+          });
+        });
+
+        // Close alert
+        $('.alert-container').on('click', '.closebtn', function() {
+          $(this).parent().remove();
+        });
+      });
+    </script>
+
+{% endblock %}
+
+

@@ -1,0 +1,215 @@
+{% extends 'sidebar_base.html' %}
+
+{% load static %}
+
+{% block content %}
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'alerts.css' %}">
+    <link rel="stylesheet" href="{% static 'search.css' %}">
+    <script src="https://kit.fontawesome.com/8c239c582a.js" crossorigin="anonymous"></script>
+  </head>
+  <h1>Search Customers</h1>
+  <form method="POST" class="search-form">
+    {% csrf_token %}
+    <div class="form-row">
+      <div class="form-group">
+        <label for="first_name">First name:</label>
+        <input type="text" id="first_name" name="first_name">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="last_name">Last name:</label>
+        <input type="text" id="last_name" name="last_name">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="customer_number">Customer number:</label>
+        <input type="text" id="customer_number" name="customer_number">
+      </div>
+    </div>
+    <button type="submit" class="search-button">Search</button>
+  </form>
+
+  <div class="alert-container">
+    {% for message in messages %}
+    <div class="alert alert-danger">
+      <span class="alert-message">{{ message }}</span>
+      <span class="closebtn">&times;</span>
+    </div>
+    {% endfor %}
+  </div>
+<br>
+{% if customer_data %}
+<h2>Search Results</h2>
+<table style="border-collapse: collapse; width: calc(100% - 200px); margin-bottom: 30px;">
+  <tbody>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Satisfaction Score:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.satisfaction_score }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Customer Status:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.customer_status }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">CLTV:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.cltv }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Number of Referrals:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.number_of_referrals }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Tenure in Months:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.tenure_in_months }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Offer:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.offer }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Phone Service:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.phone_service }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Avg Monthly Long Distance Charges:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.avg_monthly_long_distance_charges }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Multiple Lines:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.multiple_lines }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Internet Type:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.internet_type }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Avg Monthly GB Download:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.avg_monthly_gb_download }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Online Security:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.online_security }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Online Backup:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.online_backup }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Device Protection Plan:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.device_protection_plan }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Premium Tech Support:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.premium_tech_support }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Streaming TV:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.streaming_tv }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Streaming Movies:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.streaming_movies }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Streaming Music:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.streaming_music }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Unlimited Data:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.unlimited_data }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Contract:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.contract }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Paperless Billing:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.paperless_billing }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Payment Method:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.payment_method }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Monthly Charge:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.monthly_charge }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Total Charges:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.total_charges }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Total Refunds:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.total_refunds }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Total Extra Data Charges:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.total_extra_data_charges }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Total Long Distance Charges:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.total_long_distance_charges }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Population:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.population }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Latitude:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.latitude }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Longitude:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.longitude }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Gender:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.gender }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Age:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.age }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Married:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.married }}</td>
+    </tr>
+    <tr style="border: 1px solid #1A1F21;">
+      <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Number of Dependents:</th>
+      <td style="border: 1px solid #1A1F21; padding: 8px;">{{ customer_data.number_of_dependents }}</td>
+    </tr>
+  </tbody>
+</table>
+{% endif %}
+  <script>
+    const alerts = document.querySelectorAll('.alert');
+    const alertContainer = document.querySelector('.alert-container');
+
+    alerts.forEach((alert, index) => {
+      const closeBtn = alert.querySelector('.closebtn');
+      alert.classList.add('show');
+
+      closeBtn.addEventListener('click', () => {
+        alert.style.opacity = "0";
+        alert.style.visibility = "hidden";
+        alert.style.transition = "opacity 0.5s ease, visibility 0s linear 0s";
+        setTimeout(function() {
+          alert.remove();
+        }, 300);
+      });
+
+      setTimeout(function() {
+        alert.style.opacity = "0";
+        alert.style.visibility = "hidden";
+        alert.style.transition = "opacity 0.5s ease, visibility 0s linear 0s";
+        setTimeout(function() {
+          alert.remove();
+        }, 300);
+      }, 12000);
+    });
+  </script>
+{% endblock %}

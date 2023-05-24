@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'alerts.css' %}">
+    <script src="https://kit.fontawesome.com/8c239c582a.js" crossorigin="anonymous"></script>
+  </head>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">{{ title }}</div>
+          <div class="card-body">
+            <form method="POST" action="{% url 'signup' %}">
+              {% csrf_token %}
+              <div class="form-group text-center">
+                {% for field in form %}
+                  {{ field.label_tag }}
+                  {{ field }}
+                {% endfor %}
+              </div>
+              <div class="alert-container">
+                {% for message in messages %}
+                  <div class="alert alert-danger">
+                    <span class="alert-message">{{ message }}</span>
+                    <span class="closebtn">&times;</span>
+                  </div>
+                {% endfor %}
+              </div>
+              <button type="submit" class="btn btn-primary custom-button">Sign up</button>
+              <a href="{% url 'login' %}" class="signup-button">Log in instead</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const alerts = document.querySelectorAll('.alert');
+    const alertContainer = document.querySelector('.alert-container');
+
+    alerts.forEach((alert, index) => {
+      const closeBtn = alert.querySelector('.closebtn');
+      alert.classList.add('show');
+
+      closeBtn.addEventListener('click', () => {
+        alert.style.opacity = "0";
+        alert.style.visibility = "hidden";
+        alert.style.transition = "opacity 0.5s ease, visibility 0s linear 0s";
+        setTimeout(function() {
+          alert.remove();
+        }, 300);
+      });
+
+      setTimeout(function() {
+        alert.style.opacity = "0";
+        alert.style.visibility = "hidden";
+        alert.style.transition = "opacity 0.5s ease, visibility 0s linear 0s";
+        setTimeout(function() {
+          alert.remove();
+        }, 300);
+      }, 12000);
+    });
+  </script>
+{% endblock %}
+
+
+

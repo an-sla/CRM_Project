@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'support.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+
+  <h1>Support Request Submitted</h1>
+  <p>Your support request has been submitted successfully. Your support request ID is {{ support_request_id }}.</p>
+
+  <div class="alert-container">
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">
+        <span class="alert-message">{{ message }}</span>
+        <span class="closebtn">&times;</span>
+      </div>
+    {% endfor %}
+  </div>
+
+</div>
+  <script>
+    const alerts = document.querySelectorAll('.alert');
+    const alertContainer = document.querySelector('.alert-container');
+
+    alerts.forEach((alert, index) => {
+      const closeBtn = alert.querySelector('.closebtn');
+      alert.classList.add('show');
+
+      closeBtn.addEventListener('click', () => {
+        alert.style.opacity = "0";
+        alert.style.visibility = "hidden";
+        alert.style.transition = "opacity 0.5s ease, visibility 0s linear 0s";
+        setTimeout(function() {
+          alert.remove();
+        }, 300);
+      });
+
+      setTimeout(function() {
+        alert.style.opacity = "0";
+        alert.style.visibility = "hidden";
+        alert.style.transition = "opacity 0.5s ease, visibility 0s linear 0s";
+        setTimeout(function() {
+          alert.remove();
+        }, 300);
+      }, 12000);
+    });
+  </script>
+{% endblock %}
+

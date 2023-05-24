@@ -1,0 +1,61 @@
+<!-- A -->
+{% if not user.is_authenticated or new_user %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+</head>
+<body>
+  <main>
+  </main>
+</body>
+</html>
+<!-- B -->
+{% else %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'sidebar_base.css' %}">
+</head>
+<!-- C -->
+<body>
+    <div class="sidebar">
+        <ul>
+            {% if user.is_authenticated %}
+                <li class="logout"><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li class="login"><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
+            <li><a href="{% url 'home' %}">Dashboard</a></li>
+            {% if request.path == '/' %}
+                    <li class="menu-item"><a class="menu-link" href="#customer_value">Customer value statistics</a></li>
+                    <li class="menu-item"><a class="menu-link" href="#product">Product statistics</a></li>
+                    <li class="menu-item"><a class="menu-link" href="#contract">Contract statistics</a></li>
+                    <li class="menu-item"><a class="menu-link" href="#charges">Charges statistics</a></li>
+                    <li class="menu-item"><a class="menu-link" href="#payment">Payment-settings statistics</a></li>
+                    <li class="menu-item"><a class="menu-link" href="#geographical">Geographical statistics</a></li>
+                    <li class="menu-item"><a class="menu-link" href="#personal">Personal statistics</a></li>
+            {% endif %}
+            <li><a href="{% url 'search' %}">Search</a></li>
+            <li><a href="{% url 'ai_insights' %">AI Insights</a></li>
+            <li><a href="{% url 'support_form' %}">Support</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</body>
+
+</html>
+{% endif %}
+

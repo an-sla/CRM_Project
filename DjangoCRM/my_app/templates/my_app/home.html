@@ -1,0 +1,192 @@
+{% extends 'sidebar_base.html' %}
+
+{% block content %}
+  <h1>User dashboards</h1>
+  <h2 style="color: #00C8F0;">Variable data</h2>
+    <p id="customer_value"><p style="color: #D2FADF;">Customer value statistics</p></p>
+
+  <br>
+  {% if satisfaction_histogram %}
+    <div class="container">
+        {{ satisfaction_histogram|safe }}
+    </div>
+  {% endif %}
+
+  {% if cltv %}
+    <div class="container">
+        {{ cltv|safe }}
+    </div>
+  {% endif %}
+
+  {% if referrals %}
+    <div class="container">
+        {{ referrals|safe }}
+    </div>
+  {% endif %}
+    <br>
+  <p id="product"><p style="color: #D2FADF;">Product statistics</p></p>
+    {% if phone_service %}
+      <div class="container">
+          {{ phone_service|safe }}
+      </div>
+  {% endif %}
+
+  {% if multiple_lines %}
+      <div class="container">
+          {{ multiple_lines|safe }}
+      </div>
+  {% endif %}
+
+  {% if premium_tech_support %}
+      <div class="container">
+          {{ premium_tech_support|safe }}
+      </div>
+  {% endif %}
+
+  {% if streaming_tv %}
+      <div class="container">
+          {{ streaming_tv|safe }}
+      </div>
+  {% endif %}
+
+  {% if streaming_movies %}
+      <div class="container">
+          {{ streaming_movies|safe }}
+      </div>
+  {% endif %}
+
+  {% if streaming_music %}
+      <div class="container">
+          {{ streaming_music|safe }}
+      </div>
+  {% endif %}
+
+  {% if internet_type %}
+      <div class="container">
+          {{ internet_type|safe }}
+      </div>
+  {% endif %}
+
+  {% if online_security %}
+      <div class="container">
+          {{ online_security|safe }}
+      </div>
+  {% endif %}
+
+  {% if online_backup %}
+      <div class="container">
+          {{ online_backup|safe }}
+      </div>
+  {% endif %}
+
+  {% if unlimited_data %}
+      <div class="container">
+          {{ unlimited_data|safe }}
+      </div>
+  {% endif %}
+
+    <br>
+  <p id="contract"><p style="color: #D2FADF;">Contract statistics</p></p>
+    {% if tenure_months %}
+      <div class="container">
+          {{ tenure_months|safe }}
+      </div>
+    {% endif %}
+    {% if offer %}
+      <div class="container">
+          {{ offer|safe }}
+      </div>
+    {% endif %}
+    {% if contract %}
+      <div class="container">
+          {{ contract|safe }}
+      </div>
+    {% endif %}
+  <p id="charges"><p style="color: #D2FADF;">Charges statistics</p></p>
+    {% if avg_ld_month %}
+      <div class="container">
+          {{ avg_ld_month|safe }}
+      </div>
+    {% endif %}
+    {% if avg_gb_month %}
+      <div class="container">
+          {{ avg_gb_month|safe }}
+      </div>
+    {% endif %}
+    {% if monthly %}
+      <div class="container">
+          {{ monthly|safe }}
+      </div>
+    {% endif %}
+    {% if total_ld %}
+      <div class="container">
+          {{ total_ld|safe }}
+      </div>
+    {% endif %}
+    {% if total_charges %}
+      <div class="container">
+          {{ total_charges|safe }}
+      </div>
+    {% endif %}
+    {% if total_extra_data %}
+      <div class="container">
+          {{ total_extra_data|safe }}
+      </div>
+    {% endif %}
+    {% if refunds %}
+      <div class="container">
+          {{ refunds|safe }}
+      </div>
+    {% endif %}
+    <br>
+  <h2 style="color: #00C8F0;">Static data</h2>
+  <p id="payment"><p style="color: #D2FADF;">Payment-settings statistics</p></p>
+    {% if paperless %}
+      <div class="container">
+          {{ paperless|safe }}
+      </div>
+    {% endif %}
+    {% if payment %}
+      <div class="container">
+          {{ payment|safe }}
+      </div>
+    {% endif %}
+    <br>
+  <p id="geographical"><p style="color: #D2FADF;">Geographical statistics</p></p>
+    {% if geo %}
+      <div class="container">
+          {{ geo|safe }}
+      </div>
+    {% endif %}
+    <br>
+  <p id="personal"><p style="color: #D2FADF;">Personal statistics</p></p>
+    {% if gender %}
+      <div class="container">
+          {{ gender|safe }}
+      </div>
+    {% endif %}
+    {% if age %}
+      <div class="container">
+          {{ age|safe }}
+      </div>
+    {% endif %}
+    {% if married %}
+      <div class="container">
+          {{ married|safe }}
+      </div>
+    {% endif %}
+    {% if dependents %}
+      <div class="container">
+          {{ dependents|safe }}
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}
+
+<style>
+  .sidebar_bottom {
+
+    padding: 10px;
+    /* Add other styles as needed */
+  }
+</style>

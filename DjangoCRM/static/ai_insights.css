@@ -1,0 +1,21 @@
+.search-form button[type="submit"] {
+  color: #D2FADF;
+  background-color: transparent;
+  border: none;
+  transition: background-color 0.5s ease;
+  display: block;
+  text-align: left;
+  width: 250px;
+  font-size: 16px;
+  font-family: Monaco, sans-serif;
+  text-decoration: none;
+  margin-top: 30px;
+  padding-left: 0 !important;
+}
+
+.search-form button[type="submit"]:hover {
+  color: #00C8F0;
+  transition: background-color 0.5s ease;
+  text-decoration: none;
+  padding-left: 0 !important;
+}

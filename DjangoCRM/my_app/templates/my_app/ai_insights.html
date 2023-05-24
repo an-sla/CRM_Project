@@ -1,0 +1,64 @@
+{% extends 'sidebar_base.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'ai_insights.css' %}">
+</head>
+
+<h1>AI Insights</h1>
+
+<p>Interface to generate AI insights for the given user cohort:</p>
+
+<form class="search-form" action="" method="POST">
+  {% csrf_token %}
+  <button type="submit" name="insight_type" value="churn_insights">Generate churn insights</button>
+  <button type="submit" name="insight_type" value="upsell_insights">Generate upsell insights</button>
+</form>
+<br>
+
+<style>
+    table {
+        table-layout: fixed;
+        width: calc(100% - 200px);
+    }
+    th,
+    td {
+        width: 25%;
+        text-align: left;
+    }
+</style>
+
+{% if users_predictions %}
+{% for user_prediction in users_predictions %}
+<table style="border-collapse: collapse; width: calc(100% - 200px); margin-bottom: 30px;">
+  <tbody>
+      <tr style="border: 1px solid #1A1F21;">
+        <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Name:</th>
+        <td style="border: 1px solid #1A1F21; padding: 8px;">{{ user_prediction.name }}</td>
+      </tr>
+      <tr style="border: 1px solid #1A1F21;">
+        <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Surname:</th>
+        <td style="border: 1px solid #1A1F21; padding: 8px;">{{ user_prediction.surname }}</td>
+      </tr>
+      <tr style="border: 1px solid #1A1F21;">
+        <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Customer Number:</th>
+        <td style="border: 1px solid #1A1F21; padding: 8px;">{{ user_prediction.customer_number }}</td>
+      </tr>
+      <tr style="border: 1px solid #1A1F21;">
+          {% if user_prediction.prediction_type == 'churn' %}
+          <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Churn prediction:</th>
+          {% elif user_prediction.prediction_type == 'upsell' %}
+           <th style="text-align: left; border: 1px solid #1A1F21; padding: 8px;">Upsell prediction:</th>
+          {% endif %}
+        <td style="border: 1px solid #1A1F21; padding: 8px;">{{ user_prediction.prediction }}</td>
+      </tr>
+      <br>
+  </tbody>
+</table>
+{% endfor %}
+{% endif %}
+{% endblock %}
+
+
