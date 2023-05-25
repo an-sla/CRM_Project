@@ -18,7 +18,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from my_app.views import home, signup, CustomLoginView, logout_view, submit_support_request, support_form,\
-    support_request_submitted, ai_insights
+    support_request_submitted, ai_insights, search
 
 
 urlpatterns = [
@@ -33,6 +33,7 @@ urlpatterns = [
     path('submit-support-request/', submit_support_request, name='submit_support_request'),
     path('support-request-submitted/<int:support_request_id>/', support_request_submitted, name='support_request_submitted'),
     path('ai_insights/', ai_insights, name='ai_insights'),
+    path('search/', search, name='search'),
 ]
 
 # Serve static files during development
