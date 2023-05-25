@@ -28,7 +28,7 @@ from sklearn.linear_model import LogisticRegression
 
 
 def login_view(request):
-    if request.user.is_authenticated:  # Add this line to remember users
+    if request.user.is_authenticated:
         return redirect('home')
 
     if request.method == 'POST':
@@ -39,7 +39,6 @@ def login_view(request):
             login(request, user)
             return redirect('home')
         else:
-            # Handle invalid login
             pass
     else:
         form = AuthenticationForm()
@@ -70,7 +69,6 @@ def home(request):
         figs = []
         if not user.is_superuser:
             user_customers = CustomerData.objects.filter(user=user)
-            # Convert QuerySets to DataFrames
             user_customers_df = pd.DataFrame.from_records(user_customers.values())
 
             all_customers_df['Cohort'] = False
@@ -94,8 +92,7 @@ def home(request):
             for column, label, bins in zip(hist_columns, hist_labels, xbins_size):
                 fig = go.Figure()
                 fig.add_trace(go.Histogram(histnorm="percent", x=all_customers_df[column], name="All customers",
-                                           hovertemplate=
-                                           '<b>% of customers</b>: %{y:.0f} %' +
+                                           hovertemplate='<b>% of customers</b>: %{y:.0f} %' +
                                            '<br><b>' + label + ' </b>: %{x}<br><extra></extra>',
                                            marker=dict(color=colours[1]),
                                            xbins=go.histogram.XBins(size=bins)
@@ -134,8 +131,7 @@ def home(request):
                     labels=all_customers_df[column].value_counts().index,
                     values=all_customers_df[column].value_counts().values,
                     marker=dict(colors=all_cust_colours),
-                    hovertemplate=
-                    '<b>Number of customers</b>: %{value} <extra></extra>',
+                    hovertemplate='<b>Number of customers</b>: %{value} <extra></extra>',
                     legendgroup=1
                 ),
                     row=1, col=1)
@@ -145,8 +141,7 @@ def home(request):
                     labels=user_customers_df[column].value_counts().index,
                     values=user_customers_df[column].value_counts().values,
                     marker=dict(colors=user_colours),
-                    hovertemplate=
-                    '<b>Number of customers</b>: %{value} <extra></extra>',
+                    hovertemplate='<b>Number of customers</b>: %{value} <extra></extra>',
                     legendgroup=2
                 ),
                     row=1, col=2)
@@ -183,8 +178,7 @@ def home(request):
             for column, label, bins in zip(columns, labels, xbins_size):
                 fig = go.Figure()
                 fig.add_trace(go.Histogram(histnorm="percent", x=all_customers_df[column], name="All customers",
-                                           hovertemplate=
-                                           '<b>% of customers</b>: %{y:.0f} %' +
+                                           hovertemplate='<b>% of customers</b>: %{y:.0f} %' +
                                            '<br><b>' + label + ' </b>: %{x}<br><extra></extra>',
                                            marker=dict(color=colours[1]),
                                            xbins=go.histogram.XBins(size=bins)
@@ -210,8 +204,7 @@ def home(request):
                     values=all_customers_df[column].value_counts().values,
                     labels=all_customers_df[column].value_counts().index,
                     marker=dict(colors=all_cust_colours),
-                    hovertemplate=
-                    '<b>Number of customers</b>: %{value} <extra></extra>',
+                    hovertemplate='<b>Number of customers</b>: %{value} <extra></extra>',
                     legendgroup=1
                 ),
                     row=1, col=1)
@@ -318,10 +311,10 @@ def search(request):
             if not first_name.isalpha() and not (not first_name):
                 alert_message = "First name should contain only letters."
                 messages.error(request, alert_message)
-            if not last_name.isalpha() and not not (last_name):
+            if not last_name.isalpha() and not not last_name:
                 alert_message = "Last name should contain only letters."
                 messages.error(request, alert_message)
-            if not customer_number.isdigit() and not not (customer_number):
+            if not customer_number.isdigit() and not not customer_number:
                 alert_message = "Customer number should contain only digits."
                 messages.error(request, alert_message)
             elif first_name.isalpha() and last_name.isalpha() and customer_number.isdigit():
@@ -442,9 +435,9 @@ def ai_insights(request):
                 for prediction, id in zip(predictions, user_customers_df['customer_personal_data_id']):
                     customer_data = CustomerPersonalData.objects.get(id=id)
                     users_predictions.append({
-                        'name' : customer_data.first_name,
-                        'surname' : customer_data.last_name,
-                        'customer_number' : customer_data.customer_number,
+                        'name': customer_data.first_name,
+                        'surname': customer_data.last_name,
+                        'customer_number': customer_data.customer_number,
                         'prediction': prediction,
                         'prediction_type': 'churn'
                     })
@@ -454,7 +447,7 @@ def ai_insights(request):
                 all_customers_df = pd.DataFrame.from_records(all_customers.values())
 
                 features_test = all_customers_df.drop(['id', 'user_id',
-                                                        'customer_personal_data_id'], axis=1)
+                                                       'customer_personal_data_id'], axis=1)
 
                 scaler_file_path = os.path.join(current_directory, 'scaler.bin')
                 scaler = joblib.load(scaler_file_path)
@@ -469,7 +462,7 @@ def ai_insights(request):
                         'surname': customer_data.last_name,
                         'customer_number': customer_data.customer_number,
                         'prediction': prediction,
-                        'prediction_type' : 'churn'
+                        'prediction_type': 'churn'
                     })
 
         elif insight_type == 'upsell_insights':
@@ -509,9 +502,9 @@ def ai_insights(request):
                 for prediction, id in zip(predictions, user_customers_df['customer_personal_data_id']):
                     customer_data = CustomerPersonalData.objects.get(id=id)
                     users_predictions.append({
-                        'name' : customer_data.first_name,
-                        'surname' : customer_data.last_name,
-                        'customer_number' : customer_data.customer_number,
+                        'name': customer_data.first_name,
+                        'surname': customer_data.last_name,
+                        'customer_number': customer_data.customer_number,
                         'prediction': prediction,
                         'prediction_type': 'upsell'
                     })
@@ -521,7 +514,7 @@ def ai_insights(request):
                 all_customers_df = pd.DataFrame.from_records(all_customers.values())
 
                 features_test = all_customers_df.drop(['id', 'user_id',
-                                                        'customer_personal_data_id'], axis=1)
+                                                       'customer_personal_data_id'], axis=1)
 
                 scaler_upsell_file_path = os.path.join(current_directory, 'upsell_scaler.bin')
                 scaler = joblib.load(scaler_upsell_file_path)
@@ -546,4 +539,3 @@ def ai_insights(request):
     }
 
     return render(request, 'my_app/ai_insights.html', context)
-

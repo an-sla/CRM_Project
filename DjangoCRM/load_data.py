@@ -2,18 +2,15 @@ import os
 import sys
 import pandas as pd
 import django
+from my_app.models import CustomerData
 
-# Set up Django environment
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'DjangoCRM.settings')
 django.setup()
 
-from my_app.models import CustomerData
 
 def load_data():
-    # Load the CSV data
     data = pd.read_csv('new_clients.csv')
-
-    # Iterate through the DataFrame and create CustomerData instances
     for index, row in data.iterrows():
         CustomerData.objects.create(
             satisfaction_score=row['satisfaction_score'],
@@ -53,6 +50,7 @@ def load_data():
         )
 
     print("Data loaded successfully.")
+
 
 if __name__ == '__main__':
     load_data()

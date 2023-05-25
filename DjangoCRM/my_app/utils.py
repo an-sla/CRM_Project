@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from .models import CustomerData
 
+
 def assign_entries_to_users():
     entries_per_user = 20
     entries = CustomerData.objects.filter(user=None).order_by('-id')[:entries_per_user * 2]

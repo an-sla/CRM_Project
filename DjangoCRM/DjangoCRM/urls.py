@@ -31,7 +31,8 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
     path('support/', support_form, name='support_form'),
     path('submit-support-request/', submit_support_request, name='submit_support_request'),
-    path('support-request-submitted/<int:support_request_id>/', support_request_submitted, name='support_request_submitted'),
+    path('support-request-submitted/<int:support_request_id>/', support_request_submitted,
+         name='support_request_submitted'),
     path('ai_insights/', ai_insights, name='ai_insights'),
     path('search/', search, name='search'),
 ]
@@ -42,4 +43,3 @@ urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # Set the login and logout redirects to the home page
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
-

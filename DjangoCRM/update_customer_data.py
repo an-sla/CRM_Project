@@ -1,17 +1,16 @@
 import os
 import django
 from faker import Faker
+from my_app.models import CustomerPersonalData, CustomerData
+
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'DjangoCRM.settings')
 django.setup()
 
-from my_app.models import CustomerPersonalData, CustomerData
 
 def update_customer_data(number_of_customers):
     fake = Faker()
 
-    # Get the first 'number_of_customers' instances from the MyAppCustomerData table
-    # that don't have a related CustomerPersonalData instance
     customers_to_update = CustomerData.objects.filter(customer_personal_data__isnull=True)[:number_of_customers]
 
     for customer in customers_to_update:
@@ -25,7 +24,6 @@ def update_customer_data(number_of_customers):
             customer_number=customer_number,
         )
 
-        # Link the customer_personal_data instance to the existing MyAppCustomerData instance
         customer.customer_personal_data = customer_personal_data
         customer.save()
 
