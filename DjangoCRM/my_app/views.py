@@ -17,7 +17,6 @@ import json
 import os
 from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
-from django.db.models import Avg
 import plotly.express as px
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go

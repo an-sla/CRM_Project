@@ -20,7 +20,7 @@ SECRET_KEY = 'django-insecure-xj)kqq2^)c@%tc99a-v$7r6fzakvaebq-m+ovod)@d9x$l!r5@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['crmwebapp.pythonanywhere.com']
 
 # Application definition
 
